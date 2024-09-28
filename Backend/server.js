@@ -13,6 +13,6 @@ app.get("/", (req, res) => {
   res.send("Hello world!!!");
 });
 
-app.use("/api/auth", authRoutes)
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}  `));
