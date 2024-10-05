@@ -44,7 +44,7 @@ const hashedPassword = await bcrypt.hash(password, salt);
  
  }catch (error) {
   console.log("Enter in signup controller ", error.message);
-  res.status(500).json({error:"Internal server Error"})
+  res.status(500).json({error:"Intenal server Error"})
  }
 };
 
