@@ -30,6 +30,7 @@ const hashedPassword = await bcrypt.hash(password, salt);
     profilePic: gender === "male" ? boyProfilePic : girlProfilePic
   })
  if (newUser) {
+  //Generate JWT token
   await newUser.save();
 
   res.status(201).json({
@@ -44,7 +45,7 @@ const hashedPassword = await bcrypt.hash(password, salt);
  
  }catch (error) {
   console.log("Enter in signup controller ", error.message);
-  res.status(500).json({error:"Internal server Error"})
+  res.status(500).json({error:"Inter nal server Error"})
  }
 };
 
