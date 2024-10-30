@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import user from '../model/user.model'
+// import user from '../model/User.model'
 
 const generateTokenAndSetCookie = (userId, res) => {
   const token = jwt.sign({userId}, process.env.JWT_SECRET, {
@@ -10,7 +10,8 @@ const generateTokenAndSetCookie = (userId, res) => {
     maxAge: 15 * 24 * 60 * 1000,
     httpOnly: true,
     sameSite:"strict ",
+    secure: process.env.NODE_ENV !== "development"
   });
-}
+};
 
 export default generateTokenAndSetCookie;
