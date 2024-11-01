@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
       username,
       password: hashedPassword,
       gender,
-      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+      profilePic: gender === "mle" ? boyProfilePic : girlProfilePic,
     });
     if (newUser) {
       //Generate JWT token
