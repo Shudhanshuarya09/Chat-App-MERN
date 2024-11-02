@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
       username,
       password: hashedPassword,
       gender,
-      profilePic: gender === "mle" ? boyProfilePic : girlProfilePic,
+      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
     });
     if (newUser) {
       //Generate JWT token
@@ -46,14 +46,43 @@ export const signup = async (req, res) => {
     }
   } catch (error) {
     console.log("Enter in signup controller ", error.message);
-    res.status(500).json({ error: "Inter nal server Error" });
+    res.status(500).json({ error: "Internal server Error" });
   }
 };
 
-export const login = (req, res) => {
-  console.log("loginUser");
+export const login = async (req, res) => {
+  // console.log("loginUser");
+  try {
+    const {username, password} = req.body ;
+    const user = await User.findOne({username});
+    const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
+
+    if (!user || !isPasswordCorrect) {
+      return res.status(400).json({ error: "Invalid Credentials" });
+    }
+
+    generateTokenAndSetCookie(user._id, res);
+
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      profilePic: user.profilePic,
+
+    });
+
+  } catch (error) {
+    console.log("Enter in login controller ", error.message);
+    res.status(500).json({ error: "Internal server Error" });
+  }
 };
 
 export const logout = (req, res) => {
-  console.log("logoutUser");
+  try {
+    res.cookie("jwt", "", {maxAge: 0});
+    res.status(200).json({ message: "Logged out successfully"});
+  } catch (error) {
+    console.log("Enter in logout controller ", error.message);
+    res.status(500).json({ error: "Internal server Error" });
+  }
 };
