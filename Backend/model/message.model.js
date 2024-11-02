@@ -2,21 +2,21 @@ import mongoose from 'mongoose';
 
 const messageschema = new mongoose.Schema ({
   senderId:{
-    type: mongoose.SchemaTypeOptions.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
-  recieverId:{
-    type: mongoose.SchemaTypeOptions.Types.ObjectId,
+  receiverId:{
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
-  mesage:{
+  message:{
     type: String,
     required: true
   }
 }, {timestamps: true});
 
-const message = mongoose.model("Message", messageschema);
+const Message = mongoose.model("Message", messageschema);
 
 export default Message;

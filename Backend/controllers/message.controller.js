@@ -1,34 +1,42 @@
-import conversation from "../model/conversation.model";
+import Conversation from "../model/conversation.model.js";
+import Message from "../model/message.model.js";
 
 export const sendMessage = async (req, res) => {
   try {
-    const {messsage} = req.body;
-    const {id:receiverId} = req.params;
-    const senderId = req.user._id
+    const { message } = req.body;
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
 
-let conversation = await conversation.findOne({
-  participants: {$all: [senderId, receiverId]},
-})
+    if (!message) {
+      return res.status(203).json({ message: "There is nothing to send!" });
+    }
 
-if(!conversation){
-  conversation = await conversation.create({
-    participants: [senderId, receiverId],
-  });
-}
+    let conversation = await Conversation.findOne({
+      participants: { $all: [senderId, receiverId] },
+    });
 
-const newMessage = new Message({
-senderId,
-receiverId,
-messsage,
-});
 
-if (newMessage){
-  conversation.messsage.push(newMessage._id);
-}
 
-res.status(201).json(newMessage);
+    if (!conversation) {
+      conversation = await Conversation.create({
+        participants: [senderId, receiverId],
+      });
+    }
+
+    const newMessage = new Message({
+      senderId,
+      receiverId, 
+      message,     
+    });
+
+    if (newMessage) {
+      conversation.messages.push(newMessage._id);
+    }
+    await newMessage.save();
+    await conversation.save();
+    res.status(201).json(newMessage);
   } catch (error) {
-    console.log("Error in sendMessage controller: ", error.messsage)
-    res.status(500).json({ error: "Internal server error "});
+    console.log("Error in sendMessage controller: ", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };

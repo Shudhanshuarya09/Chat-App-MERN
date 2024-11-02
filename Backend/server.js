@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
-import messageRoutes from "./routes/message.routes.js";
+import messageRoutes from "./routes/message.route.js";
 import connectToMongoDB from "./db/connectToMongoDb.js";
 
 
