@@ -3,6 +3,7 @@
 // import viteLogo from '/vite.svg'
 import "./App.css";
 import Login from "./pages/login/Login";
+import SignUp from "./pages/signup/signUp";
 
 function App() {
  

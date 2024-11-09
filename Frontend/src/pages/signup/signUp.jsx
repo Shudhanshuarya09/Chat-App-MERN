@@ -14,11 +14,42 @@ const SignUp = () => {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Shudhanshu Arya"
               className="w-full input input-bordered h-10"
             />
           </div>
-          <div></div>
+
+          <div>
+            <label class="label">Email</label>
+            <input
+              type="text"
+              placeholder="arya@example.com"
+              class="full input input-bordered"
+            />
+          </div>
+          <div>
+            <label class="label">Password</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              class="full input input-bordered"
+            />
+          </div>
+
+          <div>
+            <label class="label">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              class="full input input-bordered"
+            />
+          </div>
+
+          <a className="tecxt-sm hover:underline hover:text-blue-600 mt-4 inline-block " href="#">Already have an account ?</a>
+
+          <div>
+            <button className="btn btn-block btn-sm mt-2 border border-slate-700">Sign Uo</button>
+          </div>
         </form>
       </div>
     </div>
