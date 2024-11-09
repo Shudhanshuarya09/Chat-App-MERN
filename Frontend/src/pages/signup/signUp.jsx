@@ -1,3 +1,5 @@
+import GenderCheckbox from "./GenderCheckBox";
+
 const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -44,11 +46,17 @@ const SignUp = () => {
               class="full input input-bordered"
             />
           </div>
-
-          <a className="tecxt-sm hover:underline hover:text-blue-600 mt-4 inline-block " href="#">Already have an account ?</a>
+          <GenderCheckbox />
+          <a
+            className="tecxt-sm hover:underline hover:text-blue-600 mt-2 inline-block "
+            href="#">
+            Already have an account ?
+          </a>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">Sign Uo</button>
+            <button className="btn btn-block btn-sm mt-2 border border-slate-700">
+              Sign Uo
+            </button>
           </div>
         </form>
       </div>
