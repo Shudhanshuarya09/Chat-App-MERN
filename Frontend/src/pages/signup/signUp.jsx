@@ -12,6 +12,10 @@ const SignUp = () => {
     gender: "",
   });
 
+const handleCheckboxChange = (gender) => {
+  setInputs({...inputs,gender})
+}
+
   const handleSubmit = (e) => {
     e.preventDefalut();
     console.log(inputs);
@@ -53,7 +57,7 @@ const SignUp = () => {
           <div>
             <label class="label">Password</label>
             <input
-              type="password"
+              type="password "
               placeholder="Enter Password"
               class="full input input-bordered"
 
@@ -72,7 +76,7 @@ const SignUp = () => {
               onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}
             />
           </div>
-          <GenderCheckbox />
+          <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
           <Link
             to={"/login"}
             className="tecxt-sm hover:underline hover:text-blue-600 mt-2 inline-block ">
